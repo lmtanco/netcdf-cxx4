@@ -280,7 +280,7 @@ INCLUDE(CTest)
 # BUILD_SHARED_LIBS is provided by/used by
 # CMake directly.
 ##
-OPTION(BUILD_SHARED_LIBS "Configure netcdf-cxx as a shared library." ON)
+OPTION(BUILD_SHARED_LIBS "Configure netcdf-cxx as a shared library." OFF)
 IF(BUILD_SHARED_LIBS)
   SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
 ENDIF()
@@ -299,7 +299,7 @@ IF(ENABLE_DOXYGEN)
   ENDIF(NCXX_DOT)
 ENDIF()
 
-OPTION(NCXX_ENABLE_TESTS "Enable tests. Run with 'make test'." ON)
+OPTION(NCXX_ENABLE_TESTS "Enable tests. Run with 'make test'." OFF)
 IF(NCXX_ENABLE_TESTS)
   # Options for CTest-based tests, dashboards.
   SET(NCXX_CTEST_PROJECT_NAME "netcdf-cxx4" CACHE STRING "Project Name for CTest-based testing purposes.")
@@ -667,16 +667,16 @@ install(
   COMPONENT headers
   )
 
-IF(NC_HAS_DEF_VAR_FILTER)
-  #####
-  # Build cxx4/findplugin.sh
-  #####
-  SET(ISCMAKE "1")
-  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/cxx4/findplugin.in ${CMAKE_CURRENT_BINARY_DIR}/cxx4/findplugin.sh @ONLY NEWLINE_STYLE LF)
-  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/examples/findplugin.in ${CMAKE_CURRENT_BINARY_DIR}/examples/findplugin.sh @ONLY NEWLINE_STYLE LF)
+# IF(NC_HAS_DEF_VAR_FILTER)
+#   #####
+#   # Build cxx4/findplugin.sh
+#   #####
+#   SET(ISCMAKE "1")
+#   CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/cxx4/findplugin.in ${CMAKE_CURRENT_BINARY_DIR}/cxx4/findplugin.sh @ONLY NEWLINE_STYLE LF)
+#   CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/examples/findplugin.in ${CMAKE_CURRENT_BINARY_DIR}/examples/findplugin.sh @ONLY NEWLINE_STYLE LF)
 
-  ADD_SUBDIRECTORY(plugins)
-ENDIF(NC_HAS_DEF_VAR_FILTER)
+#   ADD_SUBDIRECTORY(plugins)
+# ENDIF(NC_HAS_DEF_VAR_FILTER)
 
 IF(ENABLE_DOXYGEN)
   ADD_SUBDIRECTORY(docs)
